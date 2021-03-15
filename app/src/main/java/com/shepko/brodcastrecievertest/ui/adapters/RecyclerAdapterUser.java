@@ -30,7 +30,7 @@ import io.reactivex.rxjava3.core.Single;
 
 
 public class RecyclerAdapterUser extends RecyclerView.Adapter<RecyclerAdapterUser.ViewHolder> {
-    private Integer lastPosition = -1;
+    private int clickedPosition = -1;
 
 
     public interface OnStateClickListener {
@@ -65,10 +65,16 @@ public class RecyclerAdapterUser extends RecyclerView.Adapter<RecyclerAdapterUse
         holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
         holder.itemView.setOnClickListener(view -> {
-            Log.d("TAG", "Обработчик клика попало в позицию " + position);
-            notifyItemChanged(position, 1);
 
-            onClickListener.onStateClick(user, position);
+            if(clickedPosition != position){
+
+                Log.d("TAG", ">>>>>Сработало");
+
+                clickedPosition = position;
+                notifyItemChanged(position, 1);
+                onClickListener.onStateClick(user, position);
+            }
+
         });
     }
 
