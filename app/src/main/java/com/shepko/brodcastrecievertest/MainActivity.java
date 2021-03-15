@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
+
+        mRecyclerView.setItemViewCacheSize(users.size());
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(adapterUser);
 
